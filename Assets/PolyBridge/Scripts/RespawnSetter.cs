@@ -8,7 +8,7 @@ public class RespawnSetter : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             GameManager.Instance.SetPlayerRespawnPoint(respawnPoint.position);
-            print("Player entered respawn.");
+            //print("Player entered respawn.");
 
         }
     }

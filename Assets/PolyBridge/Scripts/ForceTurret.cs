@@ -8,9 +8,12 @@ public class ForceTurret : PhysicsRaycast
     Renderer color;
     [SerializeField] float strength=1.0f;
 
+    [Tooltip("Inactive,push,pull")]
+    [SerializeField] List<Material> materials;
     [SerializeField] float timeNotActive = 1f;
     [SerializeField] float timePushing = 1f;
     [SerializeField] float timePulling = 1f;
+    [SerializeField] LineRenderer line;
     float timer=0f;
     Dictionary<State, float> stateDurations = new Dictionary<State, float>();
     // Define possible states
@@ -67,10 +70,15 @@ public class ForceTurret : PhysicsRaycast
         switch (currentState)
         {
             case State.Idle:
-                color.material.color = Color.gray;
-
+                //color.material.color = Color.gray;
+                gameObject.GetComponent<Renderer>().material = materials[0];
+                line.startColor = materials[0].color;
+                line.endColor = materials[0].color;
+                line.enabled = false;
                 break;
             case State.Pushing:
+                line.enabled = true;
+
                 if (raycastHits != null)
                 {
                     
@@ -87,9 +95,20 @@ public class ForceTurret : PhysicsRaycast
 
                     }
                 }
-                color.material.color = Color.blue;
+                //color.material.color = Color.blue;
+                gameObject.GetComponent<Renderer>().material = materials[1];
+                
+                //line.startColor = materials[1].color;
+                //line.endColor = materials[1].color;
+                //line.startColor = Color.blue;
+                //line.endColor = Color.blue;
+                line.startColor = materials[1].color;
+                line.endColor = materials[1].color;
+
                 break;
             case State.Pulling:
+                line.enabled = true;
+
                 if (raycastHits != null)
                 {
 
@@ -106,7 +125,13 @@ public class ForceTurret : PhysicsRaycast
 
                     }
                 }
-                color.material.color = Color.orange;
+                //color.material.color = Color.orange;
+                gameObject.GetComponent<Renderer>().material = materials[2];
+                //line.material = materials[2];
+                line.startColor = materials[2].color;
+                line.endColor = materials[2].color;
+                //line.startColor = Color.blue;
+                //line.endColor = Color.blue;
                 break;
             
         };

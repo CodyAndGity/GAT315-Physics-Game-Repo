@@ -6,6 +6,10 @@ TagManager:
   tags:
   - FreeCam
   - Water
+  - CheckPoint
+  - StartPanel
+  - WinText
+  - DeathCountText
   layers:
   - Default
   - TransparentFX
